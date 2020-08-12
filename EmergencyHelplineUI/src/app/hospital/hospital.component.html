@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <!-- SEARCH -->
+  <section id="search" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ml-auto">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Patients...">
+            <div class="input-group-append">
+              <button class="btn btn-dark">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="categories">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <!--<div class="card-header">
+              <h4>Search Categories</h4>
+            </div>-->
+            <table class="table table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <th>Patient Detais</th>
+                 <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Patient Name</td>
+                  <td><input  type="text" value="" placeholder="Patient Name"/></td>
+                 
+                 
+                </tr>
+                <tr>
+                  <td>Contact Number</td>
+                  <td><input  type="text" placeholder="Conatc number" /></td>
+                 
+                  
+                </tr>
+                <tr>
+                  <td>Address</td>
+                  <td><input type="text" placeholder="Address" ></td>
+                 
+                  
+                </tr>
+                <tr>
+                  <td>Health History</td>
+                  <td><textarea  style="width:100%" class="form-control" rows="3"> </textarea></td>
+                 
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><input type="submit" value="Request Approve" ></td>
+                 
+                </tr>    
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <!--<div class="card-header">
+              <h4>Search Categories</h4>
+            </div>-->
+            <table class="table ">
+              <thead class="thead-light">
+                <tr>
+                  <th>Hospitial View</th>
+                  <th></th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                  <td>Number Beds Available</td>
+                  <td><input type="text" value="100"></td>
+                  
+                  <!--<td>
+                    <a href="details.html" class="btn btn-secondary">
+                      <i class="fas fa-angle-double-right"></i> Details
+                    </a>
+                  </td>-->
+                </tr>
+                <tr>
+                  <td>Ventilator Availability</td>
+                  <td><input type="text" value="10"></td>
+                  <!--<td>
+                    <a href="details.html" class="btn btn-secondary">
+                      <i class="fas fa-angle-double-right"></i> Details
+                    </a>
+                  </td>-->
+                </tr>
+                <tr>
+                  <td>Scan Availability</td>
+                   
+                  <td><select >
+                  <option> Select  ....</option>
+                  </select></td>
+                  
+                </tr>
+                  <tr>
+                  <td>Blood Bank Availability</td>
+                  <td><input type="text" value="10"></td>
+                  
+                </tr>
+                <tr>
+                  <td>Insurer Networks</td>
+                  <td><select >
+                  <option> Select  ....</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>Ambulatory Service</td>
+                  <td><input type="text" value="10" ></td>
+                 
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="lead text-center">
+            Copyright &copy;
+            <span id="year"></span>
+            Emergency Helpline Service
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <script>
+    // Get the current year for the copyright
+    $('#year').text(new Date().getFullYear());
+  </script>
+</body>
+
+</html>

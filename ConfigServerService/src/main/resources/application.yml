@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ConfigServer
+  profiles:
+    active: local
+  cloud:
+    config:
+      server:        
+        git:
+          default-label: master
+          uri: https://github.com/CloudHunters/configserver
+          search-paths: '{application}'
+          clone-on-start: false
+          timeout: 6000
+          strict-host-key-checking: false
+          skip-ssl-validation: true 
+          ignore-local-ssh-settings: true  
+  security:
+    user:
+      roles:
+        - ADMIN
+      name: root
+      password: s3cr3t                
+logging:
+  level:
+    root: info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /management
+  server:
+    port: 8191
+

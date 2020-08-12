@@ -1,0 +1,85 @@
+
+
+<div class="card bg-light text-dark mb-3 ml-1 mr-1"  *ngIf="usrType == 'patientLogin'">
+  <div class="row">
+
+  <div class=" col card-header"><b>Hospital Name: {{apiResponseObj.hospitalName}}  </b></div>
+
+
+   <div class= " col card-header"><b>Regn No: {{apiResponseObj.hospitalRegnNo}}</b></div>
+
+  </div>
+  <div class="card-body" >
+
+    <div class="row">
+      <div class="col">
+        <p class="text-dark">Email: {{apiResponseObj.email}}</p>
+        <p class="text-dark">City: {{apiResponseObj.city}}</p>
+        <p class="text-dark">State: {{apiResponseObj.state}}</p>
+        <p class="text-dark">Country: {{apiResponseObj.country}}</p>
+        <p class="text-dark">Pincode: {{apiResponseObj.pincode}}</p>
+      </div>
+      <div class="col">
+
+        <p class="text-dark">Bed Capacity: {{apiResponseObj.bedCapacity}}</p>
+        <p class="text-dark">Bed Available: {{apiResponseObj.bedAvailable}}</p>
+         <p class="text-dark">Ventilator Facility: {{apiResponseObj.ventilatorFacility}}</p>
+        <p class="text-dark">Ventilator Capacity: {{apiResponseObj.ventilatorCapacity}}</p>
+        <p class="text-dark">Ventilator Available: {{apiResponseObj.ventilatorAvailable}}</p>
+      </div>
+
+      <div class="col">
+
+        <p class="text-dark">Covid Speciality: {{apiResponseObj.covidSpeciality}}</p>
+        <p class="text-dark">Heart Speciality: {{apiResponseObj.heartSpeciality}}</p>
+        <p class="text-dark">Accident Speciality: {{apiResponseObj.accidentSpeciality}}</p>
+        <p class="text-dark">Ortho Speciality: {{apiResponseObj.orthoSpeciality}}</p>
+        <p class="text-dark">Neuro Speciality: {{apiResponseObj.neuroSpeciality}}</p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="card bg-light text-dark mb-3 ml-1 mr-1" >
+  <div class="row">
+
+  <div class=" col card-header"><b>Request Number: {{apiHospitalResponseObj.address}}  </b></div>
+
+
+   <div class= " col card-header"><b>Patient Name: {{apiHospitalResponseObj.hospitalRegnNo}}</b></div>
+
+  </div>
+  <div class="card-body" >
+
+    <div class="row">
+      <div class="col">
+        <p class="text-dark">Address: {{apiHospitalResponseObj.address}}</p>
+        <p class="text-dark">City: {{apiHospitalResponseObj.city}}</p>
+        <p class="text-dark">State: {{apiHospitalResponseObj.state}}</p>
+        <p class="text-dark">Country: {{apiHospitalResponseObj.country}}</p>
+        <p class="text-dark">Pincode: {{apiHospitalResponseObj.pincode}}</p>
+      </div>
+      <div class="col">
+
+        <p class="text-dark">Insurance Id: {{apiHospitalResponseObj.insuranceId}}</p>
+        <p class="text-dark">Insurance Provider: {{apiHospitalResponseObj.insuranceProvider}}</p>
+         <p class="text-dark">Insurance TPA Name: {{apiHospitalResponseObj.insuranceTpaName}}</p>
+         <p class="text-dark">Id Proof Type: {{apiHospitalResponseObj.idProofType}}</p>
+        <p class="text-dark">Id Number: {{apiHospitalResponseObj.idProofNumber}}</p>
+      </div>
+
+      <div class="col">
+
+        <p class="text-dark">Blood Group: {{apiHospitalResponseObj.bloodGroup}}</p>
+        <p class="text-dark">Gender: {{apiHospitalResponseObj.gender}}</p>
+        <p class="text-dark">Date of Birth: {{apiHospitalResponseObj.dob}}</p>
+        <p class="text-dark">E Mail: {{apiHospitalResponseObj.email}}</p>
+        <p class="text-dark">Comments: {{apiHospitalResponseObj.comments}}</p>
+
+      </div>
+
+    </div>
+  </div>
+</div>

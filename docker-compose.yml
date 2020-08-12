@@ -1,0 +1,182 @@
+version: '3.3'
+services:
+  dbService:
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+        - "27017:27017"
+    networks:
+        - spring-cloud-network
+    volumes:
+        - my-db-volume:./data/db:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=root
+      - MONGODB_DATABASE=OutReach
+    command: mongod --smallfiles --logpath=/dev/null
+
+  EmergencyHelplineUI:
+    container_name: EmergencyHelplineUI
+    build:
+        context: .
+        dockerfile: ./EmergencyHelplineUI/Dockerfile
+    image: EmergencyHelplineUI:latest
+    expose:
+        - 4200
+    ports:
+        - 4200:4200
+    networks:
+        - spring-cloud-network
+    logging:
+        driver: json-file
+
+  EmergencyHelplineBFF:
+    container_name: EmergencyHelplineBFF
+    build:
+        context: .
+        dockerfile: ./EmergencyHelplineBFF/Dockerfile
+    image: EmergencyHelplineBFF:latest
+    expose:
+        - 8089
+    ports:
+        - 8089:8089
+    networks:
+        - spring-cloud-network
+    logging:
+        driver: json-file
+
+  AuthenticationService:
+    container_name: AuthenticationService
+    build:
+        context: .
+        dockerfile: ./AuthenticationService/Dockerfile-UserAuthentication
+    image: AuthenticationService:latest
+    environment:
+         SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+    entrypoint: /opt/bin/Authentication-entrypoint.sh
+    restart: on-failure
+    expose:
+        - 8081
+    ports:
+        - 8081:8081
+    networks:
+        - spring-cloud-network
+    links:
+        - config-server:config-server
+        - eureka-server:eureka-server
+    depends_on:
+        - "config-server"
+        - "eureka-server"
+        - "dbService"
+    logging:
+        driver: json-file
+
+  HospitalManagementService:
+    container_name: HospitalManagementService
+    build:
+        context: .
+        dockerfile: ./HospitalManagementService/Dockerfile
+    image: HospitalManagementService:latest
+    environment:
+        SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+    entrypoint: /opt/bin/HospitalManagementService-entrypoint.sh
+    restart: on-failure
+    expose:
+        - 8083
+    ports:
+        - 8083:8083
+    networks:
+        - spring-cloud-network
+    links:
+        - config-server:config-server
+        - eureka-server:eureka-server
+    depends_on:
+        - "config-server"
+        - "eureka-server"
+        - "dbService"
+    logging:
+        driver: json-file
+
+  PatientService:
+    container_name: PatientService
+    build:
+        context: .
+        dockerfile: ./PatientService/Dockerfile
+    image: PatientService:latest
+    environment:
+        SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
+    entrypoint: /opt/bin/PatientService-entrypoint.sh
+    restart: on-failure
+    expose:
+        - 8082
+    ports:
+        - 8082:8082
+    networks:
+        - spring-cloud-network
+    links:
+        - config-server:config-server
+        - eureka-server:eureka-server
+    depends_on:
+        - "config-server"
+        - "eureka-server"
+        - "dbService"
+    logging:
+        driver: json-file
+
+  eureka-server:
+    container_name: eureka-server
+    build:
+        context: .
+        dockerfile: ./ServiceDiscovery/Dockerfile
+    image: eureka-server:latest
+    expose:
+        - 8761
+    ports:
+        - 8761:8761
+    networks:
+        - spring-cloud-network
+
+  ZuulServer:
+    container_name: ZuulServer
+    build:
+        context: .
+        dockerfile: ./ServiceZuulAPIGateway/Dockerfile
+    image: ZuulServer:latest
+    entrypoint: /opt/bin/ServiceAPIGateway-entrypoint.sh
+    expose:
+        - 8762
+    ports:
+        - 8762:8762
+    networks:
+        - spring-cloud-network
+    links:
+        - eureka-server:eureka-server
+    depends_on:
+        - eureka-server
+    logging:
+        driver: json-file
+  config-server:
+    container_name: config-server
+    build:
+        context: .
+        dockerfile: ./ConfigServerService/Dockerfile
+    image: config-server:latest
+    expose:
+        - 8888
+    ports:
+        - 8888:8888
+    networks:
+        - spring-cloud-network
+
+    logging:
+        driver: json-file
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+volumes:
+  my-db-volume:
